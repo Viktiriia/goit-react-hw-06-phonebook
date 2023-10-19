@@ -3,9 +3,11 @@ import { nanoid } from 'nanoid';
 import { Button, FormContainer, Input, Text } from './Form.styled';
 import { useDispatch } from 'react-redux';
 import { addContacts } from 'Redux/contactSlice';
+import { useSelector } from 'react-redux';
 
-export default function Form({contacts}) {
+export default function Form() {
   const dispatch = useDispatch();
+  const { contacts } = useSelector(state => state.contacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
  
