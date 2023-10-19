@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Button, FormContainer, Input, Text } from './Form.styled';
+import { useDispatch } from 'react-redux';
+import { addContacts } from 'Redux/contactSlice';
 
-export default function Form({contacts, addContact}) {
+export default function Form({contacts}) {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
  
@@ -36,10 +39,12 @@ export default function Form({contacts, addContact}) {
         name,
         number,
       };
-    addContact(newContact);
+    
+    dispatch(addContacts(newContact)) 
       setName('');
       setNumber('');
     }
+
   };
 
  

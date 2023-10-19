@@ -1,15 +1,19 @@
+import { useDispatch } from 'react-redux';
 import { ButtonDel, List, Item } from './ContactList.styled';
-
-export const ContactList = ({ filterArray, handleDelete }) => (
-  <List>
-    {filterArray.map(({ name, number, id }, idx) => (
-      <Item
-        key={id}
-        id={id}
-      >
-        {name}: {number}
-        <ButtonDel onClick={handleDelete}> Delete</ButtonDel>
-      </Item>
-    ))}
-  </List>
-);
+import { deleteCantacts } from 'Redux/contactSlice';
+export const ContactList = ({ contacts }) => {
+  const dispatch = useDispatch();
+  return (
+    <List>
+      {contacts.map(({ name, number, id }) => (
+        <Item key={id} id={id}>
+          {name}: {number}
+          <ButtonDel onClick={() => dispatch(deleteCantacts(id))}>
+            {' '}
+            Delete
+          </ButtonDel>
+        </Item>
+      ))}
+    </List>
+  );
+};
